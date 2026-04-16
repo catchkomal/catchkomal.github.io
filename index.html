@@ -30,14 +30,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-PPMPDHJX');</script>
 <!-- End Google Tag Manager -->
-   
-        <!-- Paste the widget script before </body> -->
-<script src="wa-widget.js"
-  data-phone="+919016460222"
-  data-name="Aria - Support"
-  data-message="Hi! How can I help you today? 😊">
-</script>
-   
+  
 </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="51">
@@ -639,6 +632,104 @@ custom plugins as per need
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <!-- whatsapp test -->
+    
+  <!-- Your website content goes here -->
+  <h1>Welcome to My Website</h1>
+  <p>This is where your website content would be.</p>
+
+  <!-- ═══════════════════════════════════════════
+       WHATSAPP WIDGET HTML — Copy from here
+  ════════════════════════════════════════════ -->
+
+  <!-- Floating WhatsApp Button -->
+  <button id="wa-widget-btn" aria-label="Chat on WhatsApp" onclick="waToggle()">
+    <svg viewBox="0 0 32 32" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 2C8.268 2 2 8.268 2 16c0 2.415.638 4.68 1.752 6.643L2 30l7.594-1.727A13.93 13.93 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2Zm0 25.6a11.56 11.56 0 0 1-5.88-1.608l-.42-.253-4.51 1.027 1.06-4.384-.277-.451A11.563 11.563 0 0 1 4.4 16C4.4 9.594 9.594 4.4 16 4.4S27.6 9.594 27.6 16 22.406 27.6 16 27.6Zm6.34-8.68c-.348-.174-2.056-1.012-2.375-1.127-.319-.116-.551-.174-.783.174-.232.347-.899 1.127-1.102 1.358-.203.232-.406.261-.754.087-.348-.174-1.47-.542-2.8-1.725-1.034-.922-1.732-2.06-1.935-2.408-.203-.348-.022-.536.153-.71.157-.156.348-.406.522-.61.174-.203.232-.347.348-.58.116-.23.058-.434-.029-.608-.087-.174-.783-1.886-1.073-2.582-.283-.678-.57-.585-.783-.595l-.667-.011c-.232 0-.609.087-.927.434-.319.347-1.218 1.19-1.218 2.9s1.247 3.363 1.421 3.595c.174.232 2.454 3.747 5.946 5.254.831.358 1.48.572 1.984.731.834.265 1.594.228 2.193.138.669-.1 2.056-.84 2.347-1.652.29-.812.29-1.508.203-1.652-.086-.145-.319-.232-.667-.406Z"/>
+    </svg>
+    <span id="wa-badge"></span>
+  </button>
+
+  <!-- Popup Card -->
+  <div id="wa-popup" role="dialog" aria-label="WhatsApp Chat">
+    <div id="wa-popup-header">
+      <div id="wa-popup-avatar">🤖</div>
+      <div id="wa-popup-info">
+        <div class="name" id="wa-agent-name">Aria – Support</div>
+        <div class="status">Online now</div>
+      </div>
+      <button id="wa-close-btn" onclick="waClose()" aria-label="Close">✕</button>
+    </div>
+
+    <div id="wa-popup-body">
+      <div class="wa-chat-bubble">
+        <span id="wa-greeting">Hi there! 👋 Have a question? I'm here to help. Chat with us on WhatsApp!</span>
+        <div class="time" id="wa-time"></div>
+      </div>
+    </div>
+
+    <div id="wa-popup-cta">
+      <button id="wa-start-btn" onclick="waOpenChat()">
+        <svg viewBox="0 0 32 32" fill="white" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 2C8.268 2 2 8.268 2 16c0 2.415.638 4.68 1.752 6.643L2 30l7.594-1.727A13.93 13.93 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2Z"/>
+        </svg>
+        Start Chat on WhatsApp
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // ── Widget Configuration ──────────────────────────────────
+    const WA_CONFIG = {
+      // Your WhatsApp business number (with country code, no + or spaces)
+      phone: "919016460222",
+      // Pre-filled message the user sees when WhatsApp opens
+      prefilledMessage: "Hi! I have a question.",
+      // Agent display name
+      agentName: "Aria – Support",
+      // Greeting message in the popup
+      greeting: "Hi there! 👋 Have a question? I'm here to help. Chat with us on WhatsApp!",
+      // Show notification badge on load after delay (ms). Set to 0 to disable.
+      badgeDelay: 3000,
+    };
+    // ─────────────────────────────────────────────────────────
+
+    // Set config values
+    document.getElementById("wa-agent-name").textContent = WA_CONFIG.agentName;
+    document.getElementById("wa-greeting").textContent = WA_CONFIG.greeting;
+    document.getElementById("wa-time").textContent = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+
+    // Show notification badge after delay
+    if (WA_CONFIG.badgeDelay > 0) {
+      setTimeout(() => {
+        document.getElementById("wa-badge").style.display = "block";
+      }, WA_CONFIG.badgeDelay);
+    }
+
+    function waToggle() {
+      const popup = document.getElementById("wa-popup");
+      const isOpen = popup.classList.contains("open");
+      isOpen ? waClose() : waOpen();
+    }
+
+    function waOpen() {
+      document.getElementById("wa-popup").classList.add("open");
+      document.getElementById("wa-badge").style.display = "none";
+    }
+
+    function waClose() {
+      document.getElementById("wa-popup").classList.remove("open");
+    }
+
+    function waOpenChat() {
+      const encoded = encodeURIComponent(WA_CONFIG.prefilledMessage);
+      const url = `https://wa.me/${WA_CONFIG.phone}?text=${encoded}`;
+      window.open(url, "_blank");
+    }
+
+    // Auto-open after 5 seconds (optional — remove if you don't want this)
+    // setTimeout(waOpen, 5000);
+  </script>
 </body>
 
 </html>
