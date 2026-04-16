@@ -633,11 +633,164 @@ custom plugins as per need
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <!-- whatsapp test -->
-    
-  <!-- Your website content goes here -->
-  <h1>Welcome to My Website</h1>
-  <p>This is where your website content would be.</p>
+<style>
+    /* Floating button */
+    #wa-widget-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 60px;
+      height: 60px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(37, 211, 102, 0.45);
+      transition: transform 0.2s, box-shadow 0.2s;
+      z-index: 9999;
+      border: none;
+    }
+    #wa-widget-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 24px rgba(37, 211, 102, 0.55);
+    }
+    #wa-widget-btn svg { width: 32px; height: 32px; }
 
+    /* Notification dot */
+    #wa-badge {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      width: 14px;
+      height: 14px;
+      background: #ff3b30;
+      border-radius: 50%;
+      border: 2px solid white;
+      display: none;
+    }
+
+    /* Popup chat card */
+    #wa-popup {
+      position: fixed;
+      bottom: 96px;
+      right: 24px;
+      width: 320px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.16);
+      z-index: 9998;
+      overflow: hidden;
+      transform: scale(0.92) translateY(12px);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.22s cubic-bezier(.34,1.56,.64,1), opacity 0.18s;
+    }
+    #wa-popup.open {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* Popup header */
+    #wa-popup-header {
+      background: #075E54;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: white;
+    }
+    #wa-popup-avatar {
+      width: 46px;
+      height: 46px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    #wa-popup-info .name { font-weight: 600; font-size: 15px; }
+    #wa-popup-info .status {
+      font-size: 12px;
+      opacity: 0.8;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 2px;
+    }
+    #wa-popup-info .status::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      background: #25D366;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    #wa-close-btn {
+      margin-left: auto;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+      opacity: 0.7;
+      line-height: 1;
+      padding: 4px;
+    }
+
+    /* Popup body */
+    #wa-popup-body {
+      padding: 16px;
+      background: #ECE5DD;
+      min-height: 120px;
+    }
+    .wa-chat-bubble {
+      background: white;
+      border-radius: 0 12px 12px 12px;
+      padding: 10px 14px;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #333;
+      max-width: 260px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      position: relative;
+    }
+    .wa-chat-bubble .time {
+      font-size: 11px;
+      color: #999;
+      text-align: right;
+      margin-top: 4px;
+    }
+
+    /* Popup CTA */
+    #wa-popup-cta {
+      padding: 14px 16px;
+      background: white;
+      border-top: 1px solid #f0f0f0;
+    }
+    #wa-start-btn {
+      width: 100%;
+      background: #25D366;
+      color: white;
+      border: none;
+      border-radius: 24px;
+      padding: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background 0.15s;
+    }
+    #wa-start-btn:hover { background: #1ebe5d; }
+    #wa-start-btn svg { width: 18px; height: 18px; }
+  </style>
   <!-- ═══════════════════════════════════════════
        WHATSAPP WIDGET HTML — Copy from here
   ════════════════════════════════════════════ -->
